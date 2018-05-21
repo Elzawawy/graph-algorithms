@@ -21,7 +21,10 @@ int main() {
     vector<GraphEdge>*vector1=graph.primAlgorithm(node1);
     for (auto &&  item:*vector1 ) {
         cout<<item.getWeight()<<","<<item.getNode1()->getNodeIndex()<<","<<item.getNode2()->getNodeIndex()<<endl;
-
-}
+    }
+    vector<GraphEdge>* dist= graph.dijkstraAlgorithm(node1);
+    for (auto &&  item: *dist ) {
+        cout<<item.getWeight()<<","<<item.getNode1()->getNodeIndex()<<","<<item.getNode2()->getNodeIndex()<<endl;
+    }
     return 0;
 }
