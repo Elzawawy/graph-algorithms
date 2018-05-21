@@ -65,8 +65,9 @@ void Graph::printGraph() {
     }
 }
 
-int *Graph::dijkstraAlgorithm(GraphNode *node) {
+vector<GraphEdge> *Graph::dijkstraAlgorithm(GraphNode *node) {
     int *distanceFromSource= new int[numberOfVertices];
+    vector<GraphEdge>* edgesShortestPath= new vector<GraphEdge>;
     priority_queue<GraphEdge, vector<GraphEdge>, myComparator> priorityQueue;
     distanceFromSource[node->getNodeIndex()] = 0;
     for (int i = 0; i < numberOfVertices; ++i) {
@@ -81,15 +82,15 @@ int *Graph::dijkstraAlgorithm(GraphNode *node) {
         int sum = minEdge.getWeight()+distanceFromSource[minEdge.getNode1()->getNodeIndex()];
         if (sum < distanceFromSource[minEdge.getNode2()->getNodeIndex()]) {
             distanceFromSource[minEdge.getNode2()->getNodeIndex()] = sum;
+            edgesShortestPath[minEdge.getNode2()->getNodeIndex()]=minEdge;
             for (auto &&edge: minEdge.getNode2()->getEdges()) {
                 if (!(minEdge == edge)) {
                     priorityQueue.push(*edge);
                 }
             }
         }
-
     }
-    return distanceFromSource;
+    return edgesShortestPath;
 }
 
 int Graph::getNumberOfVertices()  {
