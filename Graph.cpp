@@ -82,7 +82,6 @@ vector<GraphEdge> *Graph::dijkstraAlgorithm(GraphNode *node) {
         int sum = minEdge.getWeight()+distanceFromSource[minEdge.getNode1()->getNodeIndex()];
         if (sum < distanceFromSource[minEdge.getNode2()->getNodeIndex()]) {
             distanceFromSource[minEdge.getNode2()->getNodeIndex()] = sum;
-            edgesShortestPath[minEdge.getNode2()->getNodeIndex()]=minEdge;
             for (auto &&edge: minEdge.getNode2()->getEdges()) {
                 if (!(minEdge == edge)) {
                     priorityQueue.push(*edge);
