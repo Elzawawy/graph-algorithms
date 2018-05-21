@@ -21,12 +21,14 @@ class Graph {
     void createEdges();
 
 public:
+    int getNumberOfVertices() ;
 
     Graph(int numberOfVertices);
     GraphNode* addNode(int index);
     GraphEdge addEdge(GraphNode *node1,GraphNode *node2,int weight);
     void printGraph();
     vector<GraphEdge>* primAlgorithm(GraphNode* node);
+    int* dijkstraAlgorithm(GraphNode* node);
 private:
     // To compare two edges
     class myComparator
