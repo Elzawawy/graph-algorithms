@@ -31,6 +31,7 @@ public:
     vector<GraphEdge>* primAlgorithm(GraphNode* node);
     vector<GraphEdge>* dijkstraAlgorithm(GraphNode* node);
 private:
+    void printParents(int index,int sourceIndex,int *parentVertices);
     // To compare two edges
     class myComparator
     {

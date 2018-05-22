@@ -1,13 +1,11 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/GraphAlgorithms.dir/main.cpp.obj"
-  "CMakeFiles/GraphAlgorithms.dir/GraphNode.cpp.obj"
-  "CMakeFiles/GraphAlgorithms.dir/GraphEdge.cpp.obj"
-  "CMakeFiles/GraphAlgorithms.dir/Graph.cpp.obj"
-  "CMakeFiles/GraphAlgorithms.dir/graphHelper.cpp.obj"
+  "CMakeFiles/GraphAlgorithms.dir/main.cpp.o"
+  "CMakeFiles/GraphAlgorithms.dir/GraphNode.cpp.o"
+  "CMakeFiles/GraphAlgorithms.dir/GraphEdge.cpp.o"
+  "CMakeFiles/GraphAlgorithms.dir/Graph.cpp.o"
+  "CMakeFiles/GraphAlgorithms.dir/graphHelper.cpp.o"
   "GraphAlgorithms.pdb"
-  "GraphAlgorithms.exe"
-  "GraphAlgorithms.exe.manifest"
-  "libGraphAlgorithms.dll.a"
+  "GraphAlgorithms"
 )
 
 # Per-language clean rules from dependency scanning.

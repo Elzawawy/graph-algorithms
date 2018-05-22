@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/Amr/Desktop/GraphAlgorithms/Graph.cpp" "C:/Users/Amr/Desktop/GraphAlgorithms/cmake-build-debug/CMakeFiles/GraphAlgorithms.dir/Graph.cpp.obj"
-  "C:/Users/Amr/Desktop/GraphAlgorithms/GraphEdge.cpp" "C:/Users/Amr/Desktop/GraphAlgorithms/cmake-build-debug/CMakeFiles/GraphAlgorithms.dir/GraphEdge.cpp.obj"
-  "C:/Users/Amr/Desktop/GraphAlgorithms/GraphNode.cpp" "C:/Users/Amr/Desktop/GraphAlgorithms/cmake-build-debug/CMakeFiles/GraphAlgorithms.dir/GraphNode.cpp.obj"
-  "C:/Users/Amr/Desktop/GraphAlgorithms/graphHelper.cpp" "C:/Users/Amr/Desktop/GraphAlgorithms/cmake-build-debug/CMakeFiles/GraphAlgorithms.dir/graphHelper.cpp.obj"
-  "C:/Users/Amr/Desktop/GraphAlgorithms/main.cpp" "C:/Users/Amr/Desktop/GraphAlgorithms/cmake-build-debug/CMakeFiles/GraphAlgorithms.dir/main.cpp.obj"
+  "/home/omar_swidan/CLionProjects/GraphAlgorithms/Graph.cpp" "/home/omar_swidan/CLionProjects/GraphAlgorithms/cmake-build-debug/CMakeFiles/GraphAlgorithms.dir/Graph.cpp.o"
+  "/home/omar_swidan/CLionProjects/GraphAlgorithms/GraphEdge.cpp" "/home/omar_swidan/CLionProjects/GraphAlgorithms/cmake-build-debug/CMakeFiles/GraphAlgorithms.dir/GraphEdge.cpp.o"
+  "/home/omar_swidan/CLionProjects/GraphAlgorithms/GraphNode.cpp" "/home/omar_swidan/CLionProjects/GraphAlgorithms/cmake-build-debug/CMakeFiles/GraphAlgorithms.dir/GraphNode.cpp.o"
+  "/home/omar_swidan/CLionProjects/GraphAlgorithms/graphHelper.cpp" "/home/omar_swidan/CLionProjects/GraphAlgorithms/cmake-build-debug/CMakeFiles/GraphAlgorithms.dir/graphHelper.cpp.o"
+  "/home/omar_swidan/CLionProjects/GraphAlgorithms/main.cpp" "/home/omar_swidan/CLionProjects/GraphAlgorithms/cmake-build-debug/CMakeFiles/GraphAlgorithms.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -96,14 +96,24 @@ vector<GraphEdge> *Graph::dijkstraAlgorithm(GraphNode *node) {
 
         }
     }
-    for (int j = 0; j < numberOfVertices; ++j) {
-        if(parentVertices[j] == node->getNodeIndex()){
-            cout<<"Path to Node "<<j<<" is "<<node->getNodeIndex()<<","<<parentVertices[j]<<endl;
-        }
+   for (int j = 0; j < numberOfVertices; ++j) {
+
+        cout<<"Path to Node "<<j<<" is ";
+        printParents(j,node->getNodeIndex(),parentVertices);
+        cout<<endl;
 
     }
 
     return edgesShortestPath;
+}
+void Graph::printParents(int index,int sourceIndex,int *parentVertices){
+
+
+    if (index!=sourceIndex){
+        printParents(parentVertices[index],sourceIndex,parentVertices);
+    }
+    cout<<index<<" ";
+
 }
 
 
