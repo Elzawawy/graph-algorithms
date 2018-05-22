@@ -1,3 +1,0 @@
-/home/omar_swidan/CLionProjects/GraphAlgorithms/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/omar_swidan/CLionProjects/GraphAlgorithms/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/omar_swidan/CLionProjects/GraphAlgorithms/cmake-build-debug/CMakeFiles/GraphAlgorithms.dir
