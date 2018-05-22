@@ -9,9 +9,12 @@
 
 #define  INF 99999
 
-Graph::Graph(int numberOfVertices) {
+Graph::Graph(int numberOfVertices,AdjacencyMatrix adjacencyMatrix) {
     this->numberOfVertices = numberOfVertices;
+    this->adjacencyMatrix = adjacencyMatrix;
     this->numberOfEdges=0;
+    createNodes(numberOfVertices);
+    createEdges(adjacencyMatrix);
 }
 
 
@@ -98,11 +101,9 @@ vector<GraphEdge> *Graph::dijkstraAlgorithm(GraphNode *node) {
         }
     }
    for (int j = 0; j < numberOfVertices; ++j) {
-
         cout<<"Path to Node "<<j<<" is ";
         printParents(j,node->getNodeIndex(),parentVertices);
         cout<<endl;
-
     }
 
     return edgesShortestPath;
@@ -123,21 +124,17 @@ int Graph::getNumberOfVertices()  {
     return numberOfVertices;
 }
 
-vector<GraphNode *> * Graph::createNodes(int numberOfVertices) {
-    vector<GraphNode*>* vector1=new vector<GraphNode*>();
+void Graph::createNodes(int numberOfVertices) {
     for (int i = 0; i < numberOfVertices; ++i) {
-        vector1->push_back(this->addNode(i));
+        addNode(i);
     }
-    return vector1;
-
 }
 
-void Graph::createEdges(vector<GraphNode *> *nodes,vector<vector<int>> matrix ) {
-
+void Graph::createEdges(vector<vector<int>> matrix ) {
     for (int i = 0; i < numberOfVertices; ++i) {
         for (int j = 0; j < numberOfVertices; ++j) {
             if (matrix[i][j]!=0)
-                this->addEdge(nodes->at((unsigned long) i), nodes->at((unsigned long) j), matrix[i][j]);
+                this->addEdge(vertices.at((unsigned long) i), vertices.at((unsigned long) j), matrix[i][j]);
         }
 
     }
