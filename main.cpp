@@ -1,33 +1,40 @@
 #include <iostream>
 #include "Graph.h"
-
+#define randomVertix 0
 using namespace std;
 int main() {
-    Graph graph(4);
-    GraphNode* node1= graph.addNode(0);
-    GraphNode* node2= graph.addNode(1);
-    GraphNode* node3= graph.addNode(2);
-    GraphNode* node4= graph.addNode(3);
-    graph.addEdge(node1,node2,7);
-    graph.addEdge(node1,node3,2);
-    graph.addEdge(node1,node4,5);
-    graph.addEdge(node2,node1,7);
-    graph.addEdge(node2,node4,3);
-    graph.addEdge(node3,node1,2);
-    graph.addEdge(node3,node4,6);
-    graph.addEdge(node4,node2,3);
-    graph.addEdge(node4,node1,5);
-    graph.addEdge(node4,node3,6);
-    vector<GraphEdge>*vector1=graph.primAlgorithm(node1);
+    int numberOfVertices=2;
+    cout<<"enter number of vertices"<<endl;
+    cin>>numberOfVertices;
+
+    Graph graph(numberOfVertices);
+
+    cout<<"enter the adjacency matrix"<<endl;
+
+   vector<vector<int>> matrix((unsigned long) numberOfVertices);
+    int x;
+    for (int i = 0; i < numberOfVertices; ++i)
+        for (int j = 0; j < numberOfVertices; ++j){
+            cin>>x;
+            matrix.at((unsigned long) i).push_back(x);
+        }
+
+
+    graph.createEdges(graph.createNodes(numberOfVertices),matrix);
+
+
+    vector<GraphEdge>*vector1=graph.primAlgorithm(graph.getVertices().at(randomVertix));
+
     int sum=0;
     for (auto &&  item:*vector1 ) {
         cout<<item.getNode1()->getNodeIndex()<<","<<item.getNode2()->getNodeIndex()<<","<<item.getWeight()<<endl;
         sum+=item.getWeight();
     }
     cout<<"minimum spanning tree's total weight is "<<sum<<endl;
-    vector<GraphEdge>* dist= graph.dijkstraAlgorithm(node2);
-    /*for (auto &&  item: *dist ) {
-        cout<<item.getWeight()<<","<<item.getNode1()->getNodeIndex()<<","<<item.getNode2()->getNodeIndex()<<endl;
-    }*/
+    cout<<"enter the source vertix's index"<<endl;
+    unsigned long src;
+    cin>>src;
+    vector<GraphEdge>* dist= graph.dijkstraAlgorithm(graph.getVertices().at(src));
+
     return 0;
 }

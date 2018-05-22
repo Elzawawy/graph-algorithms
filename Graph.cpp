@@ -14,6 +14,7 @@ Graph::Graph(int numberOfVertices) {
     this->numberOfEdges=0;
 }
 
+
 GraphNode *Graph::addNode(int index) {
 
     GraphNode *node = new GraphNode(index);
@@ -121,6 +122,31 @@ void Graph::printParents(int index,int sourceIndex,int *parentVertices){
 int Graph::getNumberOfVertices()  {
     return numberOfVertices;
 }
+
+vector<GraphNode *> * Graph::createNodes(int numberOfVertices) {
+    vector<GraphNode*>* vector1=new vector<GraphNode*>();
+    for (int i = 0; i < numberOfVertices; ++i) {
+        vector1->push_back(this->addNode(i));
+    }
+    return vector1;
+
+}
+
+void Graph::createEdges(vector<GraphNode *> *nodes,vector<vector<int>> matrix ) {
+
+    for (int i = 0; i < numberOfVertices; ++i) {
+        for (int j = 0; j < numberOfVertices; ++j) {
+            if (matrix[i][j]!=0)
+                this->addEdge(nodes->at((unsigned long) i), nodes->at((unsigned long) j), matrix[i][j]);
+        }
+
+    }
+}
+
+const vector<GraphNode *> &Graph::getVertices() const {
+    return vertices;
+}
+
 
 
 /*void Graph::createEdges() {

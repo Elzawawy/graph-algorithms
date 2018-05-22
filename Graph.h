@@ -19,12 +19,17 @@ class Graph {
     int numberOfEdges;
     vector<GraphEdge*> edges;
     vector<GraphNode*> vertices;
-    void createEdges();
+
+public:
+    const vector<GraphNode *> &getVertices() const;
 
 public:
     int getNumberOfVertices() ;
+    vector<GraphNode*>* createNodes(int numberOfVertices);
 
     Graph(int numberOfVertices);
+    void createEdges(vector<GraphNode*>* nodes,vector<vector<int>> matrix);
+
     GraphNode* addNode(int index);
     GraphEdge addEdge(GraphNode *node1,GraphNode *node2,int weight);
     void printGraph();
