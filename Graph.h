@@ -12,9 +12,11 @@
 
 using namespace std;
 typedef unordered_map<GraphNode* ,vector<GraphEdge*>> AdjacencyList;
+typedef vector<vector<int>> AdjacencyMatrix;
 class Graph {
 
     AdjacencyList adjacencyList;
+    AdjacencyMatrix adjacencyMatrix;
     int numberOfVertices;
     int numberOfEdges;
     vector<GraphEdge*> edges;
@@ -25,10 +27,11 @@ public:
 
 public:
     int getNumberOfVertices() ;
-    vector<GraphNode*>* createNodes(int numberOfVertices);
 
-    Graph(int numberOfVertices);
-    void createEdges(vector<GraphNode*>* nodes,vector<vector<int>> matrix);
+
+    Graph(int numberOfVertices,AdjacencyMatrix adjacencyMatrix);
+    void createNodes(int numberOfVertices);
+    void createEdges(vector<vector<int>> matrix);
 
     GraphNode* addNode(int index);
     GraphEdge addEdge(GraphNode *node1,GraphNode *node2,int weight);

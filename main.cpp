@@ -3,26 +3,18 @@
 #define randomVertix 0
 using namespace std;
 int main() {
-    int numberOfVertices=2;
-    cout<<"enter number of vertices"<<endl;
+    int numberOfVertices;
+    cout<<"Enter number of vertices : ";
     cin>>numberOfVertices;
-
-    Graph graph(numberOfVertices);
-
     cout<<"enter the adjacency matrix"<<endl;
-
-   vector<vector<int>> matrix((unsigned long) numberOfVertices);
+    vector<vector<int>> matrix((unsigned long) numberOfVertices);
     int x;
     for (int i = 0; i < numberOfVertices; ++i)
         for (int j = 0; j < numberOfVertices; ++j){
             cin>>x;
             matrix.at((unsigned long) i).push_back(x);
         }
-
-
-    graph.createEdges(graph.createNodes(numberOfVertices),matrix);
-
-
+    Graph graph(numberOfVertices,matrix);
     vector<GraphEdge>*vector1=graph.primAlgorithm(graph.getVertices().at(randomVertix));
 
     int sum=0;
