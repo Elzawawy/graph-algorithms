@@ -68,19 +68,35 @@ void Graph::printGraph() {
 vector<GraphEdge> *Graph::dijkstraAlgorithm(GraphNode *node) {
     int *distanceFromSource= new int[numberOfVertices];
     vector<GraphEdge>* edgesShortestPath= new vector<GraphEdge>;
+    vector<GraphNode> unvisitedVertices ;
     priority_queue<GraphEdge, vector<GraphEdge>, myComparator> priorityQueue;
     distanceFromSource[node->getNodeIndex()] = 0;
     for (int i = 0; i < numberOfVertices; ++i) {
         if(i !=node->getNodeIndex())
             distanceFromSource[i] = INF;
     }
-    for (auto &&edge :node->getEdges())
+    for (auto && vertix  : vertices) {
+        unvisitedVertices.push_back(*vertix);
+    }
+    unvisitedVertices.erase(unvisitedVertices.begin());
+    for (auto &&edge :node->getEdges()) {
         priorityQueue.push(*edge);
+        edgesShortestPath->push_back(*edge);
+        unvisitedVertices.erase(unvisitedVertices.begin()+edge->getNode2()->getNodeIndex());
+    }
     while (!priorityQueue.empty()) {
         GraphEdge minEdge = priorityQueue.top();
         priorityQueue.pop();
         int sum = minEdge.getWeight()+distanceFromSource[minEdge.getNode1()->getNodeIndex()];
         if (sum < distanceFromSource[minEdge.getNode2()->getNodeIndex()]) {
+            if(!unvisitedVertices.empty() ){
+                for (auto && vertix: unvisitedVertices ) {
+                    if(minEdge.getNode2()->getNodeIndex()==vertix.getNodeIndex()) {
+                        unvisitedVertices.erase(unvisitedVertices.begin() + vertix.getNodeIndex());
+                        edgesShortestPath->push_back(minEdge);
+                    }
+                }
+            }
             distanceFromSource[minEdge.getNode2()->getNodeIndex()] = sum;
             for (auto &&edge: minEdge.getNode2()->getEdges()) {
                 if (!(minEdge == edge)) {
@@ -89,6 +105,9 @@ vector<GraphEdge> *Graph::dijkstraAlgorithm(GraphNode *node) {
             }
         }
     }
+    for (auto &&  vertix: unvisitedVertices ) {
+        cout<<vertix.getNodeIndex()<<endl;
+}
     return edgesShortestPath;
 }
 
