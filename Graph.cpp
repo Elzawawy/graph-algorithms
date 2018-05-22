@@ -145,7 +145,12 @@ const vector<GraphNode *> &Graph::getVertices() const {
 }
 
 Graph::~Graph() {
-    delete(vertices);
+    for (auto && item :vertices )
+        delete(item);
+
+    for (auto && item :edges )
+        delete(item);
+
 
 
 }
