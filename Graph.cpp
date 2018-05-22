@@ -147,6 +147,12 @@ const vector<GraphNode *> &Graph::getVertices() const {
     return vertices;
 }
 
+Graph::~Graph() {
+    delete(vertices);
+
+
+}
+
 
 
 /*void Graph::createEdges() {

@@ -25,6 +25,9 @@ public:
 
 public:
     int getNumberOfVertices() ;
+
+    virtual ~Graph();
+
     vector<GraphNode*>* createNodes(int numberOfVertices);
 
     Graph(int numberOfVertices);
