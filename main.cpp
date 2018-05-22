@@ -23,8 +23,8 @@ int main() {
         cout<<item.getWeight()<<","<<item.getNode1()->getNodeIndex()<<","<<item.getNode2()->getNodeIndex()<<endl;
     }*/
     vector<GraphEdge>* dist= graph.dijkstraAlgorithm(node2);
-    for (auto &&  item: *dist ) {
+    /*for (auto &&  item: *dist ) {
         cout<<item.getWeight()<<","<<item.getNode1()->getNodeIndex()<<","<<item.getNode2()->getNodeIndex()<<endl;
-    }
+    }*/
     return 0;
 }
