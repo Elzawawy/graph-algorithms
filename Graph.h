@@ -16,6 +16,7 @@ class Graph {
 
     AdjacencyList adjacencyList;
     int numberOfVertices;
+    int numberOfEdges;
     vector<GraphEdge*> edges;
     vector<GraphNode*> vertices;
     void createEdges();
