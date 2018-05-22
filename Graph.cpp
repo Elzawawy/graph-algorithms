@@ -1,46 +1,41 @@
-//
-// Created by omar_swidan on 19/05/18.
-//
-
 #include <queue>
 #include <algorithm>
 #include <iostream>
 #include "Graph.h"
-
+//defined a random high value integer as INF value.
 #define  INF 99999
-
-Graph::Graph(int numberOfVertices,AdjacencyMatrix adjacencyMatrix) {
+//Graph Object Constructor supporting Adjacency matrix representation interface.
+Graph::Graph(int numberOfVertices, AdjacencyMatrix adjacencyMatrix) {
     this->numberOfVertices = numberOfVertices;
     this->adjacencyMatrix = adjacencyMatrix;
-    this->numberOfEdges=0;
-    createNodes(numberOfVertices);
-    createEdges(adjacencyMatrix);
+    //These methods is for Accommodating the adjacency matrix representation inserted to our Edge underlying representation.
+    createNodes();
+    createEdges();
 }
-
-
+//Insert GraphNode Object to the Graph Object.
 GraphNode *Graph::addNode(int index) {
-
-    GraphNode *node = new GraphNode(index);
+    auto *node = new GraphNode(index);
+    //add this node to the vertices arrayList.
     vertices.push_back(node);
-    vector<GraphEdge *> *edges = new vector<GraphEdge *>;
+    //Set the edges arrayList for this node.
+    auto *edges = new vector<GraphEdge *>;
     node->setEdges(*edges);
     return node;
 }
-
+//Insert GraphEdge Object to the Graph Object.
 GraphEdge Graph::addEdge(GraphNode *node1, GraphNode *node2, int weight) {
-    GraphEdge *edge = new GraphEdge(weight, node1, node2);
-    numberOfEdges++;
+    auto *edge = new GraphEdge(weight, node1, node2);
+    //add this edge to the edges arrayList.
     edges.push_back(edge);
+    //add this edge to the source node's edges arrayList.
     node1->getEdges().push_back(edge);
-    adjacencyList.insert({node1, node1->getEdges()});
     return *edge;
-
 }
-
+//Prim's Algorithm Method to find Minimum Spanning Tree.
 vector<GraphEdge> *Graph::primAlgorithm(GraphNode *node) {
     int distance[numberOfVertices];
     priority_queue<GraphEdge, vector<GraphEdge>, myComparator> priorityQueue;
-    vector<GraphEdge> *MST = new vector<GraphEdge>;
+    auto *MST = new vector<GraphEdge>;
     distance[0] = 0;
     for (int i = 1; i < numberOfVertices; ++i) {
         distance[i] = INF;
@@ -64,21 +59,15 @@ vector<GraphEdge> *Graph::primAlgorithm(GraphNode *node) {
     }
     return MST;
 }
-
-void Graph::printGraph() {
-    for (auto &&vertix : vertices) {
-        cout << vertix;
-    }
-}
-
+//Dijkstra Algorithm Method to find the shortest path.
 vector<GraphEdge> *Graph::dijkstraAlgorithm(GraphNode *node) {
-    int *distanceFromSource= new int[numberOfVertices];
-    int *parentVertices = new int[numberOfVertices];
-    vector<GraphEdge>* edgesShortestPath= new vector<GraphEdge>;
+    auto *distanceFromSource = new int[numberOfVertices];
+    auto *parentVertices = new int[numberOfVertices];
+    auto *edgesShortestPath = new vector<GraphEdge>;
     priority_queue<GraphEdge, vector<GraphEdge>, myComparator> priorityQueue;
     distanceFromSource[node->getNodeIndex()] = 0;
     for (int i = 0; i < numberOfVertices; ++i) {
-        if(i !=node->getNodeIndex())
+        if (i != node->getNodeIndex())
             distanceFromSource[i] = INF;
     }
     for (auto &&edge :node->getEdges()) {
@@ -88,7 +77,7 @@ vector<GraphEdge> *Graph::dijkstraAlgorithm(GraphNode *node) {
     while (!priorityQueue.empty()) {
         GraphEdge minEdge = priorityQueue.top();
         priorityQueue.pop();
-        int sum = minEdge.getWeight()+distanceFromSource[minEdge.getNode1()->getNodeIndex()];
+        int sum = minEdge.getWeight() + distanceFromSource[minEdge.getNode1()->getNodeIndex()];
         if (sum < distanceFromSource[minEdge.getNode2()->getNodeIndex()]) {
             distanceFromSource[minEdge.getNode2()->getNodeIndex()] = sum;
             parentVertices[minEdge.getNode2()->getNodeIndex()] = minEdge.getNode1()->getNodeIndex();
@@ -100,132 +89,49 @@ vector<GraphEdge> *Graph::dijkstraAlgorithm(GraphNode *node) {
 
         }
     }
-   for (int j = 0; j < numberOfVertices; ++j) {
-        cout<<"Path to Node "<<j<<" is ";
-        printParents(j,node->getNodeIndex(),parentVertices);
-        cout<<endl;
+    for (int j = 0; j < numberOfVertices; ++j) {
+        cout << "Path to Node " << j << " is ";
+        printParents(j, node->getNodeIndex(), parentVertices);
+        cout << endl;
     }
 
     return edgesShortestPath;
 }
-void Graph::printParents(int index,int sourceIndex,int *parentVertices){
-
-
-    if (index!=sourceIndex){
-        printParents(parentVertices[index],sourceIndex,parentVertices);
-    }
-    cout<<index<<" ";
-
+//Recursive Helper method for Dijkstra Algorithm to print the output edges.
+void Graph::printParents(int index, int sourceIndex, int *parentVertices) {
+    if (index != sourceIndex)
+        printParents(parentVertices[index], sourceIndex, parentVertices);
+    cout << index << " ";
 }
-
-
-
-int Graph::getNumberOfVertices()  {
-    return numberOfVertices;
-}
-
-void Graph::createNodes(int numberOfVertices) {
+//Insert nodes using the number of vertices input.
+void Graph::createNodes() {
     for (int i = 0; i < numberOfVertices; ++i) {
         addNode(i);
     }
 }
-
-void Graph::createEdges(vector<vector<int>> matrix ) {
+//Insert edges using the adjacency matrix input.
+void Graph::createEdges() {
     for (int i = 0; i < numberOfVertices; ++i) {
         for (int j = 0; j < numberOfVertices; ++j) {
-            if (matrix[i][j]!=0)
-                this->addEdge(vertices.at((unsigned long) i), vertices.at((unsigned long) j), matrix[i][j]);
+            if (adjacencyMatrix[i][j] != 0)
+                addEdge(vertices.at((unsigned long) i), vertices.at((unsigned long) j), adjacencyMatrix[i][j]);
         }
 
     }
 }
-
+//Method to return the vertices from the graph.
 const vector<GraphNode *> &Graph::getVertices() const {
     return vertices;
 }
-
+//De-constructor of Graph Object to avoid memory leak by deleting the used pointers.
 Graph::~Graph() {
-    for (auto && item :vertices )
-        delete(item);
+    for (auto &&item :vertices)
+        delete (item);
 
-    for (auto && item :edges )
-        delete(item);
-
-
-
+    for (auto &&item :edges)
+        delete (item);
 }
-
-
-
-/*void Graph::createEdges() {
-    for (auto &&iterator  :adjacencyList) {
-
-
-        GraphNode *currentNode = iterator.first;
-
-        for (auto &&pairNodeAndWeight:iterator.second) {
-            GraphEdge *tempEdge = new GraphEdge(pairNodeAndWeight.second, currentNode, pairNodeAndWeight.first);
-            vector<GraphEdge *>::iterator it = find(edges.begin(), edges.end(), tempEdge);
-
-            if (it == edges.end()) {
-                edges.push_back(tempEdge);
-                pairNodeAndWeight.first->addEdge(tempEdge);
-
-            } else {
-
-                pairNodeAndWeight.first->addEdge(tempEdge);
-
-
-            }
-
-        }
-
-
-    }
-}*/
-
-/*
-vector<GraphNode> *Graph::getPrimMST() {
-    vector<GraphNode> *MST = new vector<GraphNode>;
-    unordered_map<GraphNode *, int> cost;
-    // Creates a Min heap of edges (order by weight)
-
-
-    for (auto &&vertix :vertices) {
-        if (vertix == vertices.at(0))
-            cost.insert({vertix, 0});
-        else cost.insert({vertix, INF});
-    }
-
-    for (auto &&edge :vertices.at(0)->getEdges())
-        priorityQueue.push(*edge);
-
-
-    while (!priorityQueue.empty()) {
-        GraphEdge graphEdge = priorityQueue.top();
-        priorityQueue.pop();
-        MST->push_back(*graphEdge.getNode1());
-        if (cost[graphEdge.getNode2()] > graphEdge.getWeight())
-            cost[graphEdge.getNode2()] = graphEdge.getWeight();
-
-        for (auto &&edge :graphEdge.getNode2()->getEdges()) {
-
-            priorityQueue.push(*edge);
-            if (cost[edge->getNode2()] > edge->getWeight())
-                cost[edge->getNode2()] = edge->getWeight();
-        }
-
-
-    }
-
-    return MST;
-}
-*/
-
-/*int Graph::myComparator::operator()(GraphEdge &edge1,GraphEdge &edge2) {
-    return edge1.getWeight() > edge2.getWeight();
-}*/
-
+//Comparator class operator method helper for Prim's Algorithm, input for priority queue.
 int Graph::myComparator::operator()(GraphEdge &edge1, GraphEdge &edge2) {
     return edge1.getWeight() > edge2.getWeight();
 }
