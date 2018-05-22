@@ -80,23 +80,29 @@ vector<GraphEdge> *Graph::dijkstraAlgorithm(GraphNode *node) {
     for (auto &&edge :node->getEdges()) {
         priorityQueue.push(*edge);
     }
-
+    parentVertices[node->getNodeIndex()] = node->getNodeIndex();
     while (!priorityQueue.empty()) {
         GraphEdge minEdge = priorityQueue.top();
         priorityQueue.pop();
         int sum = minEdge.getWeight()+distanceFromSource[minEdge.getNode1()->getNodeIndex()];
         if (sum < distanceFromSource[minEdge.getNode2()->getNodeIndex()]) {
             distanceFromSource[minEdge.getNode2()->getNodeIndex()] = sum;
-
+            parentVertices[minEdge.getNode2()->getNodeIndex()] = minEdge.getNode1()->getNodeIndex();
             for (auto &&edge: minEdge.getNode2()->getEdges()) {
                 if (!(minEdge == edge)) {
                     priorityQueue.push(*edge);
-                    parentVertices[minEdge.getNode2()->getNodeIndex()] = minEdge.getNode1()->getNodeIndex();
                 }
             }
 
         }
     }
+    for (int j = 0; j < numberOfVertices; ++j) {
+        if(parentVertices[j] == node->getNodeIndex()){
+            cout<<"Path to Node "<<j<<" is "<<node->getNodeIndex()<<","<<parentVertices[j]<<endl;
+        }
+
+    }
+
     return edgesShortestPath;
 }
 
