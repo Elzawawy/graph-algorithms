@@ -18,11 +18,11 @@ int main() {
     graph.addEdge(node4,node2,3);
     graph.addEdge(node4,node1,5);
     graph.addEdge(node4,node3,6);
-    vector<GraphEdge>*vector1=graph.primAlgorithm(node1);
+    /*vector<GraphEdge>*vector1=graph.primAlgorithm(node1);
     for (auto &&  item:*vector1 ) {
         cout<<item.getWeight()<<","<<item.getNode1()->getNodeIndex()<<","<<item.getNode2()->getNodeIndex()<<endl;
-    }
-    vector<GraphEdge>* dist= graph.dijkstraAlgorithm(node1);
+    }*/
+    vector<GraphEdge>* dist= graph.dijkstraAlgorithm(node2);
     for (auto &&  item: *dist ) {
         cout<<item.getWeight()<<","<<item.getNode1()->getNodeIndex()<<","<<item.getNode2()->getNodeIndex()<<endl;
     }
