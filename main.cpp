@@ -26,18 +26,19 @@ int main() {
         sum+=item.getWeight();
     }
     cout<<"Minimum spanning tree's total weight is "<<sum<<endl;
+    delete vector1;
     cout<<"------------------------Dijkstra Algorithm Test--------------------"<<endl;
     cout<<"Enter number of vertices of the graph : ";
     cin>>numberOfVertices;
     cout<<"Enter the adjacency matrix to find the shortest path from"<<endl;
-    matrix.clear();
-    for (int i = 0; i < numberOfVertices; ++i)
+    vector<vector<int>> matrix2((unsigned long) numberOfVertices);
+     for (int i = 0; i < numberOfVertices; ++i)
         for (int j = 0; j < numberOfVertices; ++j){
             cin>>x;
-            matrix.at((unsigned long) i).push_back(x);
+            matrix2.at((unsigned long) i).push_back(x);
         }
     //Instantiate a Graph object with adjacency matrix
-    Graph graph2(numberOfVertices,matrix);
+    Graph graph2(numberOfVertices,matrix2);
     cout<<"Enter the source vertex's index"<<endl;
     cin>>src;
     cout<<"------------------------Dijkstra Algorithm Results--------------------"<<endl;

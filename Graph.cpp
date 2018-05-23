@@ -94,14 +94,18 @@ vector<GraphEdge> *Graph::dijkstraAlgorithm(GraphNode *node) {
         printParents(j, node->getNodeIndex(), parentVertices);
         cout << endl;
     }
-
+    delete[](distanceFromSource);
+    delete[](parentVertices);
     return edgesShortestPath;
 }
 //Recursive Helper method for Dijkstra Algorithm to print the output edges.
 void Graph::printParents(int index, int sourceIndex, int *parentVertices) {
-    if (index != sourceIndex)
+    if (index != sourceIndex) {
         printParents(parentVertices[index], sourceIndex, parentVertices);
-    cout << index << " ";
+        cout<<" -> ";
+    }
+    cout << index ;
+
 }
 //Insert nodes using the number of vertices input.
 void Graph::createNodes() {
