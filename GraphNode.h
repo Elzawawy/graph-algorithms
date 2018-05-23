@@ -5,7 +5,9 @@
 class GraphEdge;
 using namespace std;
 class GraphNode {
+    //Each GraphNode holds a vector of edges that it is connect with.
     vector<GraphEdge*> edges;
+    //node index that recognizes the node.
     int nodeIndex;
 public:
     GraphNode(int nodeIndex);

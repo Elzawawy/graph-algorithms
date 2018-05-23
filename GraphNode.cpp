@@ -1,13 +1,9 @@
-//
-// Created by omar_swidan on 19/05/18.
-//
-
 #include "GraphNode.h"
-
 GraphNode::GraphNode(int nodeIndex) {
     this->nodeIndex=nodeIndex;
 }
- vector<GraphEdge *> &GraphNode::getEdges()  {
+
+vector<GraphEdge *> &GraphNode::getEdges()  {
     return edges;
 }
 
