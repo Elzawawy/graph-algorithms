@@ -1,8 +1,10 @@
 # GraphAlgorithms
 
 <p align='center'><img src="https://miro.medium.com/max/2560/1*dtmsuTMqRvYzkUCS25tLDA.jpeg"/></p>
+
 This repository contains a C++ implementation of some of the Graph Algorithms: Minimum spanning tree (Prim's Algorithm) &amp; Shortest Path Finding (Dijkstra’s Algorithm). 
-This team project was developed as assignment for Data Structures & Algorithms Course Spring 2018 offering at CCE department, Faculty of Engineering, Alexandria University.
+
+This team (me and [@oswidan97](https://github.com/oswidan97)) work was developed as assignment for Data Structures & Algorithms Course Spring 2018 offering at CCE department, Faculty of Engineering, Alexandria University.
 
 ## Overview & goals
 
@@ -57,4 +59,4 @@ if the weights of all the edges are pairwise distinct, it is indeed unique.
 
 ---
 
-<h3 align='center'>Made with :heart:></h3>
+<h3 align='center'>Made with :heart:</h3>
